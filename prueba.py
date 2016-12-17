@@ -10,23 +10,23 @@ def iniciar():
     (y, x, z) = imagen.shape
     nmin = min(x, y)
     if x > 224 and y > 224:
-	corte = 0
-    	if nmin == x:
-        	imagen = camara.redimensionar(imagen, ancho = 256, alto = y)
-        	corte = (y - 256) / 2
-        	imagen = camara.recortar(imagen, 0, 256, corte, y - corte)
-    	else:
-        	imagen = camara.redimensionar(imagen, ancho = x, alto = 256)
-        	corte = (x - 256) / 2
-        	imagen = camara.recortar(imagen, corte, x - corte, 0, 256)
-        (y, x, z) = imagen.shape
-    	if y > 257 or x > 257:
-        	imagen = camara.recortar(imagen, 0, 256, 0, 256)
-    	xcorte = randint(0, 32)
-    	ycorte = randint(0, 32)
-    	imagen = camara.recortar(imagen, xcorte, 256 - (32 - xcorte), ycorte, 256 - (32 - ycorte))
+        corte = 0
+        if nmin == x:
+            img = camara.redimensionar(img, ancho = 256.0/x, alto = 1)
+            corte = (y - 256) / 2
+            img = camara.recortar(img, 0, 256, corte, y - corte)
+        else:
+            img = camara.redimensionar(img, ancho = 1, alto = 256.0/y)
+            corte = (x - 256) / 2
+            img = camara.recortar(img, corte, x - corte, 0, 256)
+        (y, x, z) = img.shape
+        if y > 257 or x > 257:
+            img = camara.recortar(img, 0, 256, 0, 256)
+        xcorte = randint(0, 32)
+        ycorte = randint(0, 32)
+        img = camara.recortar(img, xcorte, 256 - (32 - xcorte), ycorte, 256 - (32 - ycorte))
     else:
-       	imagen = camara.redimensionar(imagen, ancho = 224, alto = 224)
+       	imagen = camara.redimensionar(imagen, ancho = 224.0/x, alto = 224.0/y)
     red = Red(Pesos = True)
     opcion = red.alimentar(imagen)[0]
     print opcion
