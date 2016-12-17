@@ -5,8 +5,7 @@ from random import randint
 
 def iniciar():
     camara = Camara()
-    ##imagen = camara.imagen()
-    imagen = camara.cargar('imagen.jpg')
+    imagen = camara.imagen()
     (y, x, z) = imagen.shape
     nmin = min(x, y)
     if x > 224 and y > 224:
