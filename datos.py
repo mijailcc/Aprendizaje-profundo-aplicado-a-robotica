@@ -9,7 +9,7 @@ def crear():
     p = False
     for i in np.arange(6):
         obj = objetos[i]
-        for j in np.arange(349):
+        for j in np.arange(1299):
             k = j + 1
             img = camara.cargar('imagenes/' + obj + str(k) + '.jpg')
             print 'imagenes/' + obj + str(k) + '.jpg'
@@ -39,9 +39,14 @@ def crear():
                 p = True
             else:
                 arreglo = np.vstack((arreglo, nuevo))
+
     arreglo = np.random.permutation(arreglo)
     arreglo = np.random.permutation(arreglo)
-    np.save('datos.npy', arreglo)
+    ent = int(1299 * 6 * 0.7)
+    entrenamiento = arreglo[ : ent]
+    prueba = arreglo[ent : ]
+    np.save('entrenamiento.npy', entrenamiento)
+    np.save('prueba.npy', prueba)
 
 if __name__ == '__main__':
-    crear()
+    crear()																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	

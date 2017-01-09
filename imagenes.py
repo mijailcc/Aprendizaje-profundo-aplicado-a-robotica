@@ -6,8 +6,8 @@ def crear():
     camara = Camara()
     for i in np.arange(6):
         obj = objetos[i]
-        inicio = 25
-        for j in np.arange(25):
+        inicio = 100
+        for j in np.arange(100):
             k = j + 1
             inicio -= 1
             img = camara.cargar('imagenes/' + obj + str(k) + '.jpg')

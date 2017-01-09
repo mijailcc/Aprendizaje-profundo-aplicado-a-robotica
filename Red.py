@@ -104,11 +104,12 @@ class Red:
         
 
     def alimentar(self, dato):
-        ndato = np.array([dato])
-        self.propagacionAdelante()
+        return self.sess.run(self.Y, feed_dict={self.X : np.array([dato])})
+
+    def iniciar(self):
+	self.propagacionAdelante()
         self.sess = tf.Session()
-        self.sess.run(tf.initialize_all_variables())
-        return self.sess.run(self.Y, feed_dict={self.X : ndato})
+	self.sess.run(tf.initialize_all_variables())
 
     def convolucion(self, X, W, SANCADA, BIAS, TAM):
         conv = tf.nn.conv2d(X, W, strides = SANCADA, padding = 'SAME')
@@ -137,7 +138,7 @@ class Red:
         self.sess = tf.InteractiveSession()
         self.sess.run(tf.initialize_all_variables())
         n = 0
-        for i in range(2094):
+        for i in range(5455):
             lote = DATOS
             if i % 1 == 0:
                 exactitud_entrenamiento = exactitud.eval(feed_dict={self.X : np.array([lote[i][0]]), self.deseado : np.array([lote[i][1]])})
